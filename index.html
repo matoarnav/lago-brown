@@ -21,6 +21,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 .wrap{max-width:640px; margin:0 auto; padding:0 22px 56px}
+.hero-full{max-width:none; margin:0; padding:0}
 
 h1,h2,h3{font-family:Fraunces, Georgia, "Times New Roman", serif; font-weight:600; text-wrap:balance; margin:0}
 .eyebrow{
@@ -30,13 +31,52 @@ h1,h2,h3{font-family:Fraunces, Georgia, "Times New Roman", serif; font-weight:60
 .pc{color:var(--tinta-suave); font-style:italic}
 hr.regla{border:0; border-top:1px solid var(--linea-fina); margin:54px 0}
 
-/* ---------- hero ---------- */
-header{padding:52px 0 8px}
-header h1{font-size:clamp(2.6rem,13vw,4rem); line-height:.95; letter-spacing:-.02em; font-weight:700; margin:14px 0 0}
-header h1 .sub{display:block; font-size:.42em; font-weight:400; letter-spacing:.01em; color:var(--tinta-suave); margin-top:14px; font-style:italic}
-.nombres{display:flex; flex-wrap:wrap; gap:6px 0; align-items:baseline; font-family:Fraunces, Georgia, serif; font-size:1.15rem; margin:26px 0 0}
-.nombres span:not(:last-child)::after{content:"·"; color:var(--cuero); margin:0 .55em}
-.mision{margin:28px 0 0; padding:18px 20px; background:var(--tenue); border-left:3px solid var(--cuero)}
+/* ---------- hero a pantalla completa ---------- */
+.hero{
+  position:relative; min-height:88svh; min-height:88vh; display:flex; flex-direction:column;
+  justify-content:flex-end; padding:0 22px 34px; margin:0 0 0; overflow:hidden; isolation:isolate;
+}
+.hero-img{position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover}
+.hero::after{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:linear-gradient(180deg, rgba(16,12,9,.62) 0%, rgba(16,12,9,.38) 38%, rgba(16,12,9,.86) 100%);
+}
+.hero-inner{max-width:640px; margin:0 auto; width:100%; color:#FFF}
+.hero .eyebrow{color:#E6C9A8}
+.hero h1{
+  font-size:clamp(3rem,16vw,4.6rem); line-height:.9; letter-spacing:-.03em; font-weight:700;
+  margin:16px 0 0; color:#FFF; text-shadow:0 2px 30px rgba(0,0,0,.4);
+}
+.hero .fecha{
+  display:block; font-size:.3em; font-weight:600; font-family:Archivo,sans-serif;
+  letter-spacing:.2em; text-transform:uppercase; margin-top:20px; color:#F0DCC4;
+}
+.cuenta-regresiva{
+  display:flex; align-items:baseline; gap:10px; margin:26px 0 0;
+  font-family:Fraunces,Georgia,serif; color:#FFF;
+}
+.cuenta-regresiva .cr-num{font-size:3rem; font-weight:700; line-height:1; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.cuenta-regresiva .cr-txt{font-family:Archivo,sans-serif; font-size:.78rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; opacity:.9; line-height:1.3}
+.hero .nombres{
+  display:flex; flex-wrap:wrap; gap:4px 0; align-items:baseline; margin:22px 0 0;
+  font-family:Fraunces,Georgia,serif; font-size:1.1rem; color:#FFF;
+}
+.hero .nombres span:not(:last-child)::after{content:"·"; color:#D9A76C; margin:0 .5em}
+.scroll-pista{
+  margin:24px 0 0; font-family:Archivo,sans-serif; font-size:.66rem; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase; color:#FFF; opacity:.7;
+}
+
+/* ---------- cifras del viaje ---------- */
+.cifras{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1px; margin:0;
+  background:var(--linea-fina); border-bottom:1px solid var(--linea-fina);
+}
+.cifras div{background:var(--papel); padding:22px 16px}
+.cifras .c-num{font-family:Fraunces,Georgia,serif; font-size:2rem; font-weight:700; line-height:1; letter-spacing:-.03em; color:var(--cuero); font-variant-numeric:tabular-nums}
+.cifras .c-txt{font-family:Archivo,sans-serif; font-size:.68rem; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--tinta-suave); margin-top:9px; line-height:1.4}
+
+.mision{margin:34px 0 0; padding:20px 22px; background:var(--tenue); border-left:3px solid var(--cuero)}
 .mision p{margin:0}
 .mision strong{font-family:Fraunces, Georgia, serif; font-weight:600}
 
@@ -59,12 +99,17 @@ h2{font-size:clamp(1.6rem,7vw,2.1rem); letter-spacing:-.015em; margin:10px 0 0}
   content:""; position:absolute; left:6px; top:10px; bottom:10px; width:1px;
   background-image:linear-gradient(var(--linea) 55%, transparent 55%); background-size:1px 8px;
 }
-.timeline li{position:relative; padding:0 0 30px 34px}
+.timeline li{position:relative; padding:0 0 34px 34px}
 .timeline li:last-child{padding-bottom:0}
-.timeline li::before{content:""; position:absolute; left:0; top:7px; width:13px; height:13px; border-radius:50%; background:var(--papel); border:1.5px solid var(--linea)}
-.timeline li.clave::before{background:var(--cuero); border-color:var(--cuero)}
+.timeline li::before{content:""; position:absolute; left:0; top:9px; width:13px; height:13px; border-radius:50%; background:var(--papel); border:1.5px solid var(--linea)}
+.timeline li.clave::before{background:var(--cuero); border-color:var(--cuero); box-shadow:0 0 0 4px rgba(138,86,40,.14)}
+.dia-cab{display:flex; align-items:baseline; gap:9px; flex-wrap:wrap}
 .dia{font-family:Archivo,sans-serif; font-weight:600; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--cuero)}
-.timeline h3{font-size:1.15rem; font-weight:600; margin:3px 0 5px}
+.hito{
+  font-family:Archivo,sans-serif; font-weight:600; font-size:.6rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--tinta-suave); border:1px solid var(--linea-fina); padding:3px 7px;
+}
+.timeline h3{font-size:1.22rem; font-weight:600; margin:6px 0 5px; letter-spacing:-.01em}
 .timeline p{margin:0; color:var(--tinta-suave); font-size:.96rem}
 .marca-noche{
   display:inline-block; margin-top:10px; font-family:Archivo,sans-serif; font-weight:600;
@@ -133,6 +178,7 @@ tr.destacada td{font-weight:600; font-family:Fraunces,Georgia,serif; font-size:1
 .cuenta .nota{font-size:.78rem; color:var(--tinta-suave); margin:6px 0 0}
 .frase{font-family:Fraunces,Georgia,serif; font-size:1.22rem; line-height:1.45; margin:26px 0 0; text-wrap:balance}
 
+.cierre h2{margin-top:12px}
 footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina); font-family:Archivo,sans-serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--tinta-suave); text-align:center}
 
 /* ---------- lightbox ---------- */
@@ -164,12 +210,27 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
 @media (min-width:560px){ .foto{flex-basis:62%} }
 </style>
 
+<header class="hero">
+  <img class="hero-img" src="assets/hero.jpg" alt="Vista aérea del Lago Brown" fetchpriority="high" decoding="async">
+  <div class="hero-inner">
+    <p class="eyebrow">Aysén · Patagonia · Carretera Austral</p>
+    <h1>Lago<br>Brown<span class="fecha">22 – 26 de octubre</span></h1>
+    <p class="cuenta-regresiva"><span class="cr-num" id="crNum">—</span><span class="cr-txt" id="crTxt">días para salir</span></p>
+    <p class="nombres"><span>Matias</span><span>Vale</span><span>Jose</span><span>Maca</span></p>
+    <p class="scroll-pista">Baja y mira el plan ↓</p>
+  </div>
+</header>
+
+<div class="cifras">
+  <div><p class="c-num">5</p><p class="c-txt">días de viaje</p></div>
+  <div><p class="c-num">4</p><p class="c-txt">noches</p></div>
+  <div><p class="c-num">2</p><p class="c-txt">días en el agua</p></div>
+  <div><p class="c-num">±15 h</p><p class="c-txt">de Carretera Austral</p></div>
+</div>
+
 <div class="wrap">
 
-<header class="rev">
-  <p class="eyebrow">Bitácora de expedición · Aysén, Patagonia</p>
-  <h1>Lago<br>Brown<span class="sub">22 – 26 de octubre</span></h1>
-  <p class="nombres"><span>Matias</span><span>Vale</span><span>Jose</span><span>Maca</span></p>
+<section class="rev" style="padding-top:38px">
   <div class="mision">
     <p>Ninguno de los cuatro conoce el Lago Brown. La noche del 22 ya está resuelta: dormimos en Cochrane.
     Lo que falta decidir son <strong>las noches del 23 y del 24, en el lago.</strong></p>
@@ -182,44 +243,44 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
     <div><span class="n-dia">Dom 25</span><span class="n-lugar">Coyhaique</span></div>
   </div>
   <p class="noches-pie">Las cuatro noches del viaje. Las dos del medio son las que estamos decidiendo.</p>
-</header>
+</section>
 
 <hr class="regla">
 
 <section class="rev">
   <p class="eyebrow">El plan</p>
-  <h2>Cinco días</h2>
-  <p class="intro">Santiago, Balmaceda, la Carretera Austral al sur y de vuelta por el norte.</p>
+  <h2>Cinco días, de punta a punta</h2>
+  <p class="intro">Salimos de madrugada desde Santiago y para el mediodía ya vamos bajando por la Carretera Austral. Después, dos días enteros con el lago para nosotros.</p>
 
   <ol class="timeline">
     <li>
-      <span class="dia">Jueves 22 · Octubre</span>
+      <div class="dia-cab"><span class="dia">Jueves 22 · Octubre</span><span class="hito">Vuelo + ruta</span></div>
       <h3>Santiago → Cochrane</h3>
-      <p>Vuelo 6:00 AM Santiago–Balmaceda. Auto y ruta al sur por la Carretera Austral hasta Cochrane, unas 5 a 6 horas con paradas. Asado de bienvenida.</p>
+      <p>Vuelo 6:00 AM a Balmaceda: amanece en el aire y la cordillera pasa por la ventana. Tomamos el auto y bajamos por la Carretera Austral, 5 a 6 horas con todas las paradas que aguanten las ganas de sacar fotos. Llegamos a Cochrane a hacer el asado de bienvenida.</p>
       <span class="marca-noche resuelta">Noche 22 · Cochrane, ya resuelta</span>
     </li>
     <li class="clave">
-      <span class="dia">Viernes 23</span>
+      <div class="dia-cab"><span class="dia">Viernes 23</span><span class="hito">Primera línea al agua</span></div>
       <h3>Cochrane → Lago Brown</h3>
-      <p>Hora y media de auto. Instalarse y pescar.</p>
+      <p>Hora y media de auto y llegamos. Dejamos las cosas, armamos los equipos y a pescar: el primer lanzamiento del viaje, en un lago que ninguno de los cuatro conoce.</p>
       <span class="marca-noche abierta">Noche 23 · en el lago, por decidir</span>
     </li>
     <li class="clave">
-      <span class="dia">Sábado 24</span>
-      <h3>Día completo de pesca</h3>
-      <p>Todo el día en el agua.</p>
+      <div class="dia-cab"><span class="dia">Sábado 24</span><span class="hito">El día grande</span></div>
+      <h3>Pesca, de la mañana a la última luz</h3>
+      <p>El único día sin manejar ni hacer maletas. Todo el día en el agua, sin apuro y sin reloj.</p>
       <span class="marca-noche abierta">Noche 24 · en el lago, por decidir</span>
     </li>
     <li>
-      <span class="dia">Domingo 25</span>
+      <div class="dia-cab"><span class="dia">Domingo 25</span><span class="hito">Ruta al norte</span></div>
       <h3>Lago Brown → Coyhaique</h3>
-      <p>Día de ruta: alrededor de 7 horas en total, referencial.</p>
+      <p>Día de ruta, alrededor de 7 horas en total, referencial. La Austral de vuelta, ahora con las historias del fin de semana. Noche en Coyhaique.</p>
       <span class="marca-noche resuelta">Noche 25 · Coyhaique, ya resuelta</span>
     </li>
     <li>
-      <span class="dia">Lunes 26</span>
+      <div class="dia-cab"><span class="dia">Lunes 26</span><span class="hito">Vuelta</span></div>
       <h3>De vuelta a casa</h3>
-      <p>Temprano al aeropuerto de Balmaceda, unos 50 minutos, y vuelo de regreso. 10:00 AM en Santiago.</p>
+      <p>Temprano a Balmaceda, unos 50 minutos, y de vuelta a Santiago a las 10:00 AM. A las once ya estamos contando el viaje.</p>
     </li>
   </ol>
 </section>
@@ -229,7 +290,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
 <section class="rev">
   <p class="eyebrow">Las dos opciones</p>
   <h2>Dónde dormimos el 23 y el 24</h2>
-  <p class="intro">Las mismas dos noches en los dos casos. La decisión es del grupo.</p>
+  <p class="intro">Las mismas dos noches y el mismo lago, con dos maneras muy distintas de pasarlas. Miren las fotos y después vemos.</p>
 
   <article class="opcion">
     <div class="opcion-cab">
@@ -377,6 +438,14 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
   <p class="frase">La diferencia son $50.000 por persona por todo el fin de semana — eso compra enchufes y despertar a orilla del lago.</p>
 </section>
 
+<hr class="regla">
+
+<section class="rev cierre">
+  <p class="eyebrow">Lo único seguro</p>
+  <h2>El 22 de octubre a las 6 de la mañana, los cuatro en Balmaceda</h2>
+  <p class="intro">Duerman donde duerman el 23 y el 24, el sábado se pesca todo el día. Eso ya está decidido.</p>
+</section>
+
 <footer>Patagonia · Octubre 2026 · Matias — Vale — Jose — Maca</footer>
 </div>
 
@@ -390,6 +459,19 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
 
 <script>
 (function(){
+  // ---------- cuenta regresiva hasta el vuelo ----------
+  (function(){
+    var num=document.getElementById('crNum'), txt=document.getElementById('crTxt');
+    if(!num) return;
+    var salida=new Date('2026-10-22T06:00:00-03:00');
+    var hoy=new Date();
+    var dias=Math.ceil((salida-hoy)/86400000);
+    if(dias>1){ num.textContent=dias; txt.textContent='días para salir'; }
+    else if(dias===1){ num.textContent='1'; txt.textContent='día para salir'; }
+    else if(dias===0){ num.textContent='hoy'; txt.textContent='nos vamos'; }
+    else { num.textContent='✓'; txt.textContent='viaje cumplido'; }
+  })();
+
   var revs = document.querySelectorAll('.rev');
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
     revs.forEach(function(e){ e.classList.add('visible'); });
