@@ -1,0 +1,406 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Lago Brown, 22-26 de octubre: las dos opciones para las noches del 23 y 24.">
+<title>Lago Brown</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Archivo:wght@400;500;600&display=swap">
+<style>
+/* Paleta fija sobre blanco: la pagina se ve igual en cualquier tema del telefono. */
+:root{
+  --papel:#FFFFFF; --tinta:#241C16; --tinta-suave:#6B5B4C;
+  --cuero:#8A5628; --bosque:#3C5140; --linea:#D5CCBD; --linea-fina:#E9E3D8;
+  --sobre-cuero:#FFFFFF; --sombra:rgba(36,28,22,.14); --tenue:#FBF9F5;
+}
+*{box-sizing:border-box}
+html{background:var(--papel)}
+body{
+  margin:0; background:var(--papel); color:var(--tinta);
+  font:400 1.0625rem/1.65 Archivo, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:640px; margin:0 auto; padding:0 22px 56px}
+
+h1,h2,h3{font-family:Fraunces, Georgia, "Times New Roman", serif; font-weight:600; text-wrap:balance; margin:0}
+.eyebrow{
+  font-family:Archivo, sans-serif; font-weight:600; font-size:.7rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--cuero); margin:0;
+}
+.pc{color:var(--tinta-suave); font-style:italic}
+hr.regla{border:0; border-top:1px solid var(--linea-fina); margin:54px 0}
+
+/* ---------- hero ---------- */
+header{padding:52px 0 8px}
+header h1{font-size:clamp(2.6rem,13vw,4rem); line-height:.95; letter-spacing:-.02em; font-weight:700; margin:14px 0 0}
+header h1 .sub{display:block; font-size:.42em; font-weight:400; letter-spacing:.01em; color:var(--tinta-suave); margin-top:14px; font-style:italic}
+.nombres{display:flex; flex-wrap:wrap; gap:6px 0; align-items:baseline; font-family:Fraunces, Georgia, serif; font-size:1.15rem; margin:26px 0 0}
+.nombres span:not(:last-child)::after{content:"·"; color:var(--cuero); margin:0 .55em}
+.mision{margin:28px 0 0; padding:18px 20px; background:var(--tenue); border-left:3px solid var(--cuero)}
+.mision p{margin:0}
+.mision strong{font-family:Fraunces, Georgia, serif; font-weight:600}
+
+/* ---------- las cuatro noches ---------- */
+.noches{display:grid; grid-template-columns:repeat(4,1fr); margin:32px 0 0; border:1px solid var(--linea)}
+.noches div{padding:14px 8px 15px; text-align:center; border-right:1px solid var(--linea-fina)}
+.noches div:last-child{border-right:0}
+.noches .n-dia{font-family:Archivo,sans-serif; font-weight:600; font-size:.6rem; letter-spacing:.11em; text-transform:uppercase; color:var(--tinta-suave); display:block}
+.noches .n-lugar{font-family:Fraunces,Georgia,serif; font-weight:600; font-size:.95rem; line-height:1.2; margin-top:7px; display:block}
+.noches .abierta{background:var(--cuero)}
+.noches .abierta .n-dia{color:var(--sobre-cuero); opacity:.85}
+.noches .abierta .n-lugar{color:var(--sobre-cuero); font-size:1.5rem; line-height:1}
+.noches-pie{font-size:.84rem; color:var(--tinta-suave); margin:11px 0 0; text-align:center}
+
+/* ---------- timeline ---------- */
+h2{font-size:clamp(1.6rem,7vw,2.1rem); letter-spacing:-.015em; margin:10px 0 0}
+.intro{color:var(--tinta-suave); margin:12px 0 0}
+.timeline{position:relative; margin:34px 0 0; padding:0; list-style:none}
+.timeline::before{
+  content:""; position:absolute; left:6px; top:10px; bottom:10px; width:1px;
+  background-image:linear-gradient(var(--linea) 55%, transparent 55%); background-size:1px 8px;
+}
+.timeline li{position:relative; padding:0 0 30px 34px}
+.timeline li:last-child{padding-bottom:0}
+.timeline li::before{content:""; position:absolute; left:0; top:7px; width:13px; height:13px; border-radius:50%; background:var(--papel); border:1.5px solid var(--linea)}
+.timeline li.clave::before{background:var(--cuero); border-color:var(--cuero)}
+.dia{font-family:Archivo,sans-serif; font-weight:600; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase; color:var(--cuero)}
+.timeline h3{font-size:1.15rem; font-weight:600; margin:3px 0 5px}
+.timeline p{margin:0; color:var(--tinta-suave); font-size:.96rem}
+.marca-noche{
+  display:inline-block; margin-top:10px; font-family:Archivo,sans-serif; font-weight:600;
+  font-size:.66rem; letter-spacing:.14em; text-transform:uppercase; padding:5px 10px;
+  border:1px solid var(--linea); color:var(--tinta-suave);
+}
+.marca-noche.resuelta{border-color:var(--bosque); color:var(--bosque)}
+.marca-noche.abierta{background:var(--cuero); border-color:var(--cuero); color:var(--sobre-cuero)}
+
+/* ---------- opciones ---------- */
+.opcion{margin-top:44px}
+.opcion-cab{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.opcion-n{font-family:Fraunces,Georgia,serif; font-weight:700; font-size:2.9rem; line-height:1; color:var(--cuero); letter-spacing:-.04em}
+.opcion-tit{flex:1; min-width:200px}
+.opcion-tit h3{font-size:1.5rem; line-height:1.15; letter-spacing:-.01em}
+.opcion-tit .apodo{font-size:.82rem; color:var(--tinta-suave); font-family:Archivo,sans-serif; letter-spacing:.02em}
+
+.galeria{display:flex; gap:14px; overflow-x:auto; margin:26px -22px 0; padding:6px 22px 18px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch}
+.galeria::-webkit-scrollbar{height:0}
+.foto{
+  flex:0 0 78%; max-width:300px; scroll-snap-align:center; background:var(--papel);
+  padding:9px 9px 0; box-shadow:0 2px 12px var(--sombra); border:1px solid var(--linea-fina);
+  cursor:zoom-in; font:inherit; color:var(--tinta); text-align:left; display:block;
+}
+.foto img{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:#EFEBE3}
+.foto .cap{font-family:Archivo,sans-serif; font-size:.76rem; line-height:1.45; color:var(--tinta-suave); padding:10px 2px 12px; display:block}
+.galeria-pie{font-size:.8rem; color:var(--tinta-suave); margin:-4px 0 0; font-style:italic}
+.galeria-tit{
+  margin:26px 0 0; font-family:Archivo,sans-serif; font-size:.68rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--tinta-suave);
+  padding-bottom:9px; border-bottom:1px solid var(--linea-fina);
+}
+.galeria-tit .gt-op{color:var(--cuero)}
+.galeria-tit .gt-n{color:var(--tinta)}
+.galeria{margin-top:14px}
+
+.incluye{list-style:none; padding:0; margin:24px 0 0; display:grid; gap:10px}
+.incluye li{display:flex; gap:11px; align-items:flex-start; font-size:.99rem}
+.marca{flex:0 0 20px; font-family:Fraunces,Georgia,serif; font-weight:700; font-size:1.05rem; line-height:1.5}
+.si{color:var(--bosque)} .no{color:var(--cuero)} .duda{color:var(--tinta-suave)}
+
+.precio{margin:28px 0 0; padding:22px 0 0; border-top:1px solid var(--linea-fina); display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+.precio .cifra{font-family:Fraunces,Georgia,serif; font-weight:700; font-size:clamp(2.2rem,10vw,2.9rem); line-height:1; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.precio .unidad{font-size:.85rem; color:var(--tinta-suave); line-height:1.35}
+.detalle-precio{margin:14px 0 0; font-size:.92rem; color:var(--tinta-suave)}
+.detalle-precio b{color:var(--tinta); font-weight:600}
+.tip{margin:18px 0 0; padding:14px 16px; background:var(--tenue); font-size:.9rem; border-left:3px solid var(--linea)}
+.tip .eyebrow{margin-bottom:5px}
+
+/* ---------- tabla ---------- */
+.tabla-cont{overflow-x:auto; margin:28px -22px 0; padding:0 22px}
+table{border-collapse:collapse; width:100%; min-width:320px; font-size:.86rem}
+th,td{text-align:left; padding:11px 8px; border-bottom:1px solid var(--linea-fina); vertical-align:top}
+thead th{font-family:Archivo,sans-serif; font-weight:600; font-size:.66rem; letter-spacing:.12em; text-transform:uppercase; color:var(--cuero); border-bottom:1px solid var(--linea)}
+tbody th{font-weight:500; color:var(--tinta-suave); font-size:.8rem; padding-left:0; width:29%}
+td{font-variant-numeric:tabular-nums}
+tr.destacada td{font-weight:600; font-family:Fraunces,Georgia,serif; font-size:1rem}
+
+/* ---------- la cuenta ---------- */
+.cuenta{display:grid; grid-template-columns:1fr 1fr; margin:30px 0 0; border:1px solid var(--linea)}
+.cuenta div{padding:20px 16px}
+.cuenta div:first-child{border-right:1px solid var(--linea)}
+.cuenta .quien{font-family:Archivo,sans-serif; font-size:.66rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--cuero); margin:0}
+.cuenta .monto{font-family:Fraunces,Georgia,serif; font-weight:700; font-size:clamp(1.6rem,8vw,2.1rem); line-height:1.05; margin:8px 0 0; font-variant-numeric:tabular-nums; letter-spacing:-.02em}
+.cuenta .nota{font-size:.78rem; color:var(--tinta-suave); margin:6px 0 0}
+.frase{font-family:Fraunces,Georgia,serif; font-size:1.22rem; line-height:1.45; margin:26px 0 0; text-wrap:balance}
+
+footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina); font-family:Archivo,sans-serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--tinta-suave); text-align:center}
+
+/* ---------- lightbox ---------- */
+.lb{position:fixed; inset:0; z-index:50; background:rgba(28,22,17,.94); display:none; align-items:center; justify-content:center; padding:18px; cursor:zoom-out}
+.lb.on{display:flex}
+.lb figure{margin:0; max-width:100%; max-height:100%; background:var(--papel); padding:10px 10px 0}
+.lb img{display:block; max-width:100%; max-height:74vh; object-fit:contain}
+.lb figcaption{font-family:Archivo,sans-serif; font-size:.8rem; color:var(--tinta-suave); padding:11px 2px 13px}
+.lb-cerrar{position:absolute; top:14px; right:14px; width:42px; height:42px; border:0; cursor:pointer; background:transparent; color:#FFF; font-size:1.7rem; line-height:1}
+:focus-visible{outline:2px solid var(--cuero); outline-offset:3px}
+
+.rev{opacity:0; transform:translateY(14px)}
+.rev.visible{opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease}
+@media (prefers-reduced-motion: reduce){
+  .rev{opacity:1; transform:none; transition:none}
+  *{scroll-behavior:auto !important}
+}
+@media (min-width:560px){ .foto{flex-basis:62%} }
+</style>
+
+<div class="wrap">
+
+<header class="rev">
+  <p class="eyebrow">Bitácora de expedición · Aysén, Patagonia</p>
+  <h1>Lago<br>Brown<span class="sub">22 – 26 de octubre</span></h1>
+  <p class="nombres"><span>Matias</span><span>Vale</span><span>Jose</span><span>Maca</span></p>
+  <div class="mision">
+    <p>Ninguno de los cuatro conoce el Lago Brown. La noche del 22 ya está resuelta: dormimos en Cochrane.
+    Lo que falta decidir son <strong>las noches del 23 y del 24, en el lago.</strong></p>
+  </div>
+
+  <div class="noches">
+    <div><span class="n-dia">Jue 22</span><span class="n-lugar">Cochrane</span></div>
+    <div class="abierta"><span class="n-dia">Vie 23</span><span class="n-lugar">?</span></div>
+    <div class="abierta"><span class="n-dia">Sáb 24</span><span class="n-lugar">?</span></div>
+    <div><span class="n-dia">Dom 25</span><span class="n-lugar">Coyhaique</span></div>
+  </div>
+  <p class="noches-pie">Las cuatro noches del viaje. Las dos del medio son las que estamos decidiendo.</p>
+</header>
+
+<hr class="regla">
+
+<section class="rev">
+  <p class="eyebrow">El plan</p>
+  <h2>Cinco días</h2>
+  <p class="intro">Santiago, Balmaceda, la Carretera Austral al sur y de vuelta por el norte.</p>
+
+  <ol class="timeline">
+    <li>
+      <span class="dia">Jueves 22 · Octubre</span>
+      <h3>Santiago → Cochrane</h3>
+      <p>Vuelo 6:00 AM Santiago–Balmaceda. Auto y ruta al sur por la Carretera Austral hasta Cochrane, unas 5 a 6 horas con paradas. Asado de bienvenida.</p>
+      <span class="marca-noche resuelta">Noche 22 · Cochrane, ya resuelta</span>
+    </li>
+    <li class="clave">
+      <span class="dia">Viernes 23</span>
+      <h3>Cochrane → Lago Brown</h3>
+      <p>Hora y media de auto. Instalarse y pescar.</p>
+      <span class="marca-noche abierta">Noche 23 · en el lago, por decidir</span>
+    </li>
+    <li class="clave">
+      <span class="dia">Sábado 24</span>
+      <h3>Día completo de pesca</h3>
+      <p>Todo el día en el agua.</p>
+      <span class="marca-noche abierta">Noche 24 · en el lago, por decidir</span>
+    </li>
+    <li>
+      <span class="dia">Domingo 25</span>
+      <h3>Lago Brown → Coyhaique</h3>
+      <p>Día de ruta: alrededor de 7 horas en total, referencial.</p>
+      <span class="marca-noche resuelta">Noche 25 · Coyhaique, ya resuelta</span>
+    </li>
+    <li>
+      <span class="dia">Lunes 26</span>
+      <h3>De vuelta a casa</h3>
+      <p>Temprano al aeropuerto de Balmaceda, unos 50 minutos, y vuelo de regreso. 10:00 AM en Santiago.</p>
+    </li>
+  </ol>
+</section>
+
+<hr class="regla">
+
+<section class="rev">
+  <p class="eyebrow">Las dos opciones</p>
+  <h2>Dónde dormimos el 23 y el 24</h2>
+  <p class="intro">Las mismas dos noches en los dos casos. La decisión es del grupo.</p>
+
+  <article class="opcion">
+    <div class="opcion-cab">
+      <div class="opcion-n">1</div>
+      <div class="opcion-tit">
+        <h3>La cabaña solar</h3>
+        <span class="apodo">$25.000 por persona, por noche</span>
+      </div>
+    </div>
+
+    <p class="galeria-tit"><span class="gt-op">Fotos de la Opción 1</span> · <span class="gt-n">10 imágenes</span> · desliza para ver todas</p>
+    <div class="galeria">
+      <button class="foto" type="button"><img src="assets/opcion1-01.jpg" width="1200" height="676" alt="La cabaña vista desde afuera, con nieve y montañas" loading="lazy" decoding="async"><span class="cap">La cabaña por fuera: dos pisos, estanque de agua y las montañas nevadas al fondo.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-02.jpg" width="674" height="1200" alt="Living de la cabaña con ventanales, sillones y pieles" loading="lazy" decoding="async"><span class="cap">El living: ventanales al lago, sillones con pieles y mesa de centro.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-03.jpg" width="1200" height="676" alt="El lago visto desde el terreno, con montaña nevada" loading="lazy" decoding="async"><span class="cap">El lago desde el terreno de la cabaña, con la montaña nevada al frente.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-04.jpg" width="675" height="1200" alt="Montañas nevadas y cielo azul vistos desde el terreno" loading="lazy" decoding="async"><span class="cap">Las montañas nevadas desde el terreno, en un día despejado.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-05.jpg" width="1200" height="674" alt="Dormitorio con cama de dos plazas" loading="lazy" decoding="async"><span class="cap">Un dormitorio con cama de dos plazas y ventana al exterior.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-06.jpg" width="1200" height="675" alt="Segundo dormitorio con cama de dos plazas" loading="lazy" decoding="async"><span class="cap">Otro dormitorio, con cama de dos plazas y velador.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-07.jpg" width="669" height="1200" alt="Espacio común amplio con cocina a un costado" loading="lazy" decoding="async"><span class="cap">El espacio común: la cocina a un costado y bastante piso libre.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-08.jpg" width="675" height="1200" alt="Salón amplio con mesa, sillas y ventanas" loading="lazy" decoding="async"><span class="cap">El salón grande, con mesa y sillas y ventanas al fondo.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-09.jpg" width="675" height="1200" alt="Baño de la cabaña con WC" loading="lazy" decoding="async"><span class="cap">El baño: WC y revestimiento de madera.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion1-10.jpg" width="675" height="1200" alt="Ducha de cemento sin terminaciones" loading="lazy" decoding="async"><span class="cap">La ducha, de obra, sin terminaciones.</span></button>
+    </div>
+    <p class="galeria-pie">Toca una foto para verla grande. Siete de estas son fotogramas de los videos que mandaron, por eso se ven más blandas.</p>
+
+    <ul class="incluye">
+      <li><span class="marca si">✓</span><span>Calefacción</span></li>
+      <li><span class="marca si">✓</span><span>Camas</span></li>
+      <li><span class="marca si">✓</span><span>Baño</span></li>
+      <li><span class="marca si">✓</span><span>Es amplia</span></li>
+      <li><span class="marca duda">~</span><span>Luz solar, solo con focos: iluminación básica de noche</span></li>
+      <li><span class="marca no">✕</span><span>No tiene enchufes: no se pueden cargar celulares ni cámaras</span></li>
+      <li><span class="marca duda">~</span><span>El lago se ve al frente del terreno en los videos; <span class="pc">a qué distancia exacta, por confirmar</span></span></li>
+    </ul>
+
+    <div class="precio">
+      <span class="cifra">$25.000</span>
+      <span class="unidad">por persona<br>por noche</span>
+    </div>
+    <p class="detalle-precio">Las 2 noches: <b>$50.000 por persona</b> · Total del grupo: <b>$200.000</b></p>
+
+    <div class="tip">
+      <p class="eyebrow">Si es esta</p>
+      <p style="margin:0">Salimos de Cochrane con los power banks y las baterías de cámara cargadas a full.</p>
+    </div>
+  </article>
+
+  <hr class="regla">
+
+  <article class="opcion">
+    <div class="opcion-cab">
+      <div class="opcion-n">2</div>
+      <div class="opcion-tit">
+        <h3>La casa a orilla del lago</h3>
+        <span class="apodo">$200.000 por noche la casa completa</span>
+      </div>
+    </div>
+
+    <p class="galeria-tit"><span class="gt-op">Fotos de la Opción 2</span> · <span class="gt-n">14 fotos</span> · desliza para ver todas</p>
+    <div class="galeria">
+      <button class="foto" type="button"><img src="assets/opcion2-01.jpg" width="1200" height="675" alt="Vista aérea del lago con casas en la orilla" loading="lazy" decoding="async"><span class="cap">Vista aérea del sector: el lago y las construcciones a la orilla del agua, con el camino de acceso.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-02.jpg" width="1200" height="900" alt="Living comedor con mesa, sofás y ventanales" loading="lazy" decoding="async"><span class="cap">El living-comedor: mesa para seis, sofás y ventanales a ambos lados.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-03.jpg" width="1200" height="900" alt="Living con estufa a leña y puerta corredera" loading="lazy" decoding="async"><span class="cap">El otro extremo del living: estufa a leña, sofás y salida al exterior.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-04.jpg" width="1200" height="900" alt="Living con televisión, aparador y comedor" loading="lazy" decoding="async"><span class="cap">El living hacia el comedor, con la televisión y el aparador.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-05.jpg" width="1200" height="900" alt="Sala vista desde la cocina, con comedor y sofás" loading="lazy" decoding="async"><span class="cap">La misma sala desde la cocina: comedor, sofás y un sillón antiguo.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-06.jpg" width="1200" height="900" alt="Ambiente abierto con cocina, comedor y living" loading="lazy" decoding="async"><span class="cap">El ambiente completo: cocina a la derecha, comedor y living al fondo.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-07.jpg" width="1200" height="900" alt="Cocina con isla central y cocina a leña" loading="lazy" decoding="async"><span class="cap">La cocina: isla al centro, cocina a leña de fierro y mesón con lavaplatos.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-08.jpg" width="900" height="1200" alt="Cocina con campana y comedor junto a la ventana" loading="lazy" decoding="async"><span class="cap">La cocina desde el otro lado, con la campana y el comedor junto a la ventana.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-09.jpg" width="1200" height="900" alt="Dormitorio con tres camas y ventana" loading="lazy" decoding="async"><span class="cap">Un dormitorio con tres camas: dos de dos plazas y una de una plaza.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-10.jpg" width="1200" height="900" alt="Dormitorio con tres camas y cortina roja" loading="lazy" decoding="async"><span class="cap">Otro dormitorio de tres camas, con cortina roja y ventanal.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-11.jpg" width="1200" height="675" alt="Dormitorio con cama de dos plazas y sofá cama" loading="lazy" decoding="async"><span class="cap">Dormitorio con cama de dos plazas y un sofá cama, con ventana a la nieve.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-12.jpg" width="675" height="1200" alt="Dormitorio con dos camas y televisión" loading="lazy" decoding="async"><span class="cap">Dormitorio con dos camas y televisión en la pared.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-13.jpg" width="900" height="1200" alt="Baño con WC, lavamanos, ducha y lavadora" loading="lazy" decoding="async"><span class="cap">El baño: WC, lavamanos, ducha con cortina y lavadora.</span></button>
+      <button class="foto" type="button"><img src="assets/opcion2-14.jpg" width="900" height="1200" alt="Baño visto desde la puerta, con espejo y lavadora" loading="lazy" decoding="async"><span class="cap">El baño desde la puerta: espejo, lavadora y la ducha a la derecha.</span></button>
+    </div>
+    <p class="galeria-pie">Toca una foto para verla grande.</p>
+
+    <ul class="incluye">
+      <li><span class="marca si">✓</span><span>Electricidad completa: enchufes para cargar todo</span></li>
+      <li><span class="marca si">✓</span><span>Calefacción</span></li>
+      <li><span class="marca si">✓</span><span>A orilla del lago</span></li>
+      <li><span class="marca si">✓</span><span>Baño con ducha <span class="pc">— se ve en las fotos</span></span></li>
+      <li><span class="marca si">✓</span><span>Capacidad hasta 12 personas</span></li>
+    </ul>
+
+    <div class="precio">
+      <span class="cifra">$50.000</span>
+      <span class="unidad">por persona<br>por noche, entre 4</span>
+    </div>
+    <p class="detalle-precio">Las 2 noches: <b>$100.000 por persona</b> · Total del grupo: <b>$400.000</b></p>
+
+    <div class="tip">
+      <p class="eyebrow">Cómo se paga</p>
+      <p style="margin:0">Se paga por casa, no por persona. Entre 4 sale a $50.000 cada uno por noche; si fuéramos 8, saldría a $25.000 cada uno.</p>
+    </div>
+  </article>
+</section>
+
+<hr class="regla">
+
+<section class="rev">
+  <p class="eyebrow">Frente a frente</p>
+  <h2>La comparación</h2>
+
+  <div class="tabla-cont">
+    <table>
+      <thead>
+        <tr><th scope="col"></th><th scope="col">Opción 1<br>Cabaña solar</th><th scope="col">Opción 2<br>Casa en el lago</th></tr>
+      </thead>
+      <tbody>
+        <tr class="destacada"><th scope="row">P/p por noche</th><td>$25.000</td><td>$50.000</td></tr>
+        <tr class="destacada"><th scope="row">P/p las 2 noches</th><td>$50.000</td><td>$100.000</td></tr>
+        <tr class="destacada"><th scope="row">Total grupo</th><td>$200.000</td><td>$400.000</td></tr>
+        <tr><th scope="row">Enchufes</th><td><span class="no">✕</span> No hay</td><td><span class="si">✓</span> Sí</td></tr>
+        <tr><th scope="row">Luz</th><td>Solar, solo focos</td><td>Electricidad completa</td></tr>
+        <tr><th scope="row">Calefacción</th><td><span class="si">✓</span> Sí</td><td><span class="si">✓</span> Sí</td></tr>
+        <tr><th scope="row">Baño</th><td><span class="si">✓</span> Sí</td><td><span class="si">✓</span> Sí</td></tr>
+        <tr><th scope="row">Orilla de lago</th><td>Se ve al frente <span class="pc">(distancia por confirmar)</span></td><td><span class="si">✓</span> Sí</td></tr>
+        <tr><th scope="row">Capacidad</th><td>Amplia <span class="pc">(sin dato)</span></td><td>Hasta 12 personas</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="regla">
+
+<section class="rev">
+  <p class="eyebrow">La cuenta clarita</p>
+  <h2>Lo que pone cada uno</h2>
+  <p class="intro">Por las dos noches del 23 y el 24, por cabeza.</p>
+
+  <div class="cuenta">
+    <div>
+      <p class="quien">Opción 1</p>
+      <p class="monto">$50.000</p>
+      <p class="nota">$200.000 el grupo</p>
+    </div>
+    <div>
+      <p class="quien">Opción 2</p>
+      <p class="monto">$100.000</p>
+      <p class="nota">$400.000 el grupo</p>
+    </div>
+  </div>
+
+  <p class="frase">La diferencia son $50.000 por persona por todo el fin de semana — eso compra enchufes y despertar a orilla del lago.</p>
+</section>
+
+<footer>Patagonia · Octubre 2026 · Matias — Vale — Jose — Maca</footer>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-cerrar" id="lbCerrar" type="button" aria-label="Cerrar">✕</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+
+<script>
+(function(){
+  var revs = document.querySelectorAll('.rev');
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+    revs.forEach(function(e){ e.classList.add('visible'); });
+  } else {
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, {rootMargin:'0px 0px -8% 0px', threshold:.05});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'),
+      lbCap=document.getElementById('lbCap'), lbCerrar=document.getElementById('lbCerrar'), ultimo=null;
+  function abrir(btn){
+    var img=btn.querySelector('img'), cap=btn.querySelector('.cap');
+    lbImg.src=img.src; lbImg.alt=img.alt; lbCap.textContent=cap?cap.textContent:'';
+    lb.classList.add('on'); document.body.style.overflow='hidden'; ultimo=btn; lbCerrar.focus();
+  }
+  function cerrar(){
+    lb.classList.remove('on'); document.body.style.overflow=''; lbImg.src='';
+    if(ultimo){ ultimo.focus(); ultimo=null; }
+  }
+  document.querySelectorAll('.foto').forEach(function(b){ b.addEventListener('click', function(){ abrir(b); }); });
+  lb.addEventListener('click', function(e){ if(e.target===lb || e.target===lbCerrar) cerrar(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && lb.classList.contains('on')) cerrar();
+    if(e.key==='Tab' && lb.classList.contains('on')){ e.preventDefault(); lbCerrar.focus(); }
+  });
+})();
+</script>
