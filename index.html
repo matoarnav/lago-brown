@@ -82,15 +82,17 @@ h2{font-size:clamp(1.6rem,7vw,2.1rem); letter-spacing:-.015em; margin:10px 0 0}
 .opcion-tit h3{font-size:1.5rem; line-height:1.15; letter-spacing:-.01em}
 .opcion-tit .apodo{font-size:.82rem; color:var(--tinta-suave); font-family:Archivo,sans-serif; letter-spacing:.02em}
 
-.galeria{display:flex; gap:14px; overflow-x:auto; margin:26px -22px 0; padding:6px 22px 18px; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch}
-.galeria::-webkit-scrollbar{height:0}
+.galeria{display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:14px 0 0}
 .foto{
-  flex:0 0 78%; max-width:300px; scroll-snap-align:center; background:var(--papel);
-  padding:9px 9px 0; box-shadow:0 2px 12px var(--sombra); border:1px solid var(--linea-fina);
-  cursor:zoom-in; font:inherit; color:var(--tinta); text-align:left; display:block;
+  padding:0; border:0; background:var(--papel); cursor:zoom-in; display:block;
+  position:relative; overflow:hidden; font:inherit; line-height:0;
 }
-.foto img{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:#EFEBE3}
-.foto .cap{font-family:Archivo,sans-serif; font-size:.76rem; line-height:1.45; color:var(--tinta-suave); padding:10px 2px 12px; display:block}
+.foto img{
+  display:block; width:100%; height:auto; aspect-ratio:1/1; object-fit:cover; background:#EFEBE3;
+  transition:opacity .18s ease;
+}
+.foto:hover img{opacity:.86}
+.foto .cap{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
 .galeria-pie{font-size:.8rem; color:var(--tinta-suave); margin:-4px 0 0; font-style:italic}
 .galeria-tit{
   margin:26px 0 0; font-family:Archivo,sans-serif; font-size:.68rem; font-weight:600;
@@ -99,7 +101,6 @@ h2{font-size:clamp(1.6rem,7vw,2.1rem); letter-spacing:-.015em; margin:10px 0 0}
 }
 .galeria-tit .gt-op{color:var(--cuero)}
 .galeria-tit .gt-n{color:var(--tinta)}
-.galeria{margin-top:14px}
 
 .incluye{list-style:none; padding:0; margin:24px 0 0; display:grid; gap:10px}
 .incluye li{display:flex; gap:11px; align-items:flex-start; font-size:.99rem}
@@ -135,12 +136,23 @@ tr.destacada td{font-weight:600; font-family:Fraunces,Georgia,serif; font-size:1
 footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina); font-family:Archivo,sans-serif; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--tinta-suave); text-align:center}
 
 /* ---------- lightbox ---------- */
-.lb{position:fixed; inset:0; z-index:50; background:rgba(28,22,17,.94); display:none; align-items:center; justify-content:center; padding:18px; cursor:zoom-out}
+.lb{position:fixed; inset:0; z-index:50; background:rgba(28,22,17,.96); display:none; align-items:center; justify-content:center; padding:16px; cursor:zoom-out}
 .lb.on{display:flex}
-.lb figure{margin:0; max-width:100%; max-height:100%; background:var(--papel); padding:10px 10px 0}
-.lb img{display:block; max-width:100%; max-height:74vh; object-fit:contain}
-.lb figcaption{font-family:Archivo,sans-serif; font-size:.8rem; color:var(--tinta-suave); padding:11px 2px 13px}
-.lb-cerrar{position:absolute; top:14px; right:14px; width:42px; height:42px; border:0; cursor:pointer; background:transparent; color:#FFF; font-size:1.7rem; line-height:1}
+.lb figure{margin:0; max-width:100%; background:var(--papel); padding:10px 10px 0; cursor:auto}
+.lb img{display:block; width:auto; height:auto; max-width:100%; max-height:70vh; object-fit:contain; margin:0 auto}
+.lb figcaption{font-family:Archivo,sans-serif; font-size:.82rem; line-height:1.45; color:var(--tinta-suave); padding:11px 2px 13px; max-width:52ch}
+.lb-cerrar{position:absolute; top:10px; right:10px; width:46px; height:46px; border:0; cursor:pointer; background:transparent; color:#FFF; font-size:1.7rem; line-height:1}
+.lb-nav{
+  position:absolute; top:50%; transform:translateY(-50%); width:46px; height:60px; border:0;
+  cursor:pointer; background:rgba(0,0,0,.35); color:#FFF; font-size:1.6rem; line-height:1;
+}
+.lb-nav:hover{background:rgba(0,0,0,.6)}
+#lbPrev{left:6px} #lbNext{right:6px}
+.lb-contador{
+  position:absolute; top:18px; left:0; right:0; text-align:center; color:#FFF; opacity:.75;
+  font-family:Archivo,sans-serif; font-size:.74rem; letter-spacing:.14em; font-variant-numeric:tabular-nums;
+  pointer-events:none;
+}
 :focus-visible{outline:2px solid var(--cuero); outline-offset:3px}
 
 .rev{opacity:0; transform:translateY(14px)}
@@ -228,20 +240,20 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
       </div>
     </div>
 
-    <p class="galeria-tit"><span class="gt-op">Fotos de la Opción 1</span> · <span class="gt-n">10 imágenes</span> · desliza para ver todas</p>
+    <p class="galeria-tit"><span class="gt-op">Fotos de la Opción 1</span> · <span class="gt-n">10 imágenes</span></p>
     <div class="galeria">
-      <button class="foto" type="button"><img src="assets/opcion1-01.jpg" width="1200" height="676" alt="La cabaña vista desde afuera, con nieve y montañas" loading="lazy" decoding="async"><span class="cap">La cabaña por fuera: dos pisos, estanque de agua y las montañas nevadas al fondo.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-02.jpg" width="674" height="1200" alt="Living de la cabaña con ventanales, sillones y pieles" loading="lazy" decoding="async"><span class="cap">El living: ventanales al lago, sillones con pieles y mesa de centro.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-03.jpg" width="1200" height="676" alt="El lago visto desde el terreno, con montaña nevada" loading="lazy" decoding="async"><span class="cap">El lago desde el terreno de la cabaña, con la montaña nevada al frente.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-04.jpg" width="675" height="1200" alt="Montañas nevadas y cielo azul vistos desde el terreno" loading="lazy" decoding="async"><span class="cap">Las montañas nevadas desde el terreno, en un día despejado.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-05.jpg" width="1200" height="674" alt="Dormitorio con cama de dos plazas" loading="lazy" decoding="async"><span class="cap">Un dormitorio con cama de dos plazas y ventana al exterior.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-06.jpg" width="1200" height="675" alt="Segundo dormitorio con cama de dos plazas" loading="lazy" decoding="async"><span class="cap">Otro dormitorio, con cama de dos plazas y velador.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-07.jpg" width="669" height="1200" alt="Espacio común amplio con cocina a un costado" loading="lazy" decoding="async"><span class="cap">El espacio común: la cocina a un costado y bastante piso libre.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-08.jpg" width="675" height="1200" alt="Salón amplio con mesa, sillas y ventanas" loading="lazy" decoding="async"><span class="cap">El salón grande, con mesa y sillas y ventanas al fondo.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-09.jpg" width="675" height="1200" alt="Baño de la cabaña con WC" loading="lazy" decoding="async"><span class="cap">El baño: WC y revestimiento de madera.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion1-10.jpg" width="675" height="1200" alt="Ducha de cemento sin terminaciones" loading="lazy" decoding="async"><span class="cap">La ducha, de obra, sin terminaciones.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-01.jpg"><img src="assets/thumbs/opcion1-01.jpg" width="640" height="640" alt="La cabaña vista desde afuera, con nieve y montañas" loading="lazy" decoding="async"><span class="cap">La cabaña por fuera: dos pisos, estanque de agua y las montañas nevadas al fondo.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-02.jpg"><img src="assets/thumbs/opcion1-02.jpg" width="640" height="640" alt="Living de la cabaña con ventanales, sillones y pieles" loading="lazy" decoding="async"><span class="cap">El living: ventanales al lago, sillones con pieles y mesa de centro.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-03.jpg"><img src="assets/thumbs/opcion1-03.jpg" width="640" height="640" alt="El lago visto desde el terreno, con montaña nevada" loading="lazy" decoding="async"><span class="cap">El lago desde el terreno de la cabaña, con la montaña nevada al frente.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-04.jpg"><img src="assets/thumbs/opcion1-04.jpg" width="640" height="640" alt="Montañas nevadas y cielo azul vistos desde el terreno" loading="lazy" decoding="async"><span class="cap">Las montañas nevadas desde el terreno, en un día despejado.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-05.jpg"><img src="assets/thumbs/opcion1-05.jpg" width="640" height="640" alt="Dormitorio con cama de dos plazas" loading="lazy" decoding="async"><span class="cap">Un dormitorio con cama de dos plazas y ventana al exterior.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-06.jpg"><img src="assets/thumbs/opcion1-06.jpg" width="640" height="640" alt="Segundo dormitorio con cama de dos plazas" loading="lazy" decoding="async"><span class="cap">Otro dormitorio, con cama de dos plazas y velador.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-07.jpg"><img src="assets/thumbs/opcion1-07.jpg" width="640" height="640" alt="Espacio común amplio con cocina a un costado" loading="lazy" decoding="async"><span class="cap">El espacio común: la cocina a un costado y bastante piso libre.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-08.jpg"><img src="assets/thumbs/opcion1-08.jpg" width="640" height="640" alt="Salón amplio con mesa, sillas y ventanas" loading="lazy" decoding="async"><span class="cap">El salón grande, con mesa y sillas y ventanas al fondo.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-09.jpg"><img src="assets/thumbs/opcion1-09.jpg" width="640" height="640" alt="Baño de la cabaña con WC" loading="lazy" decoding="async"><span class="cap">El baño: WC y revestimiento de madera.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion1-10.jpg"><img src="assets/thumbs/opcion1-10.jpg" width="640" height="640" alt="Ducha de cemento sin terminaciones" loading="lazy" decoding="async"><span class="cap">La ducha, de obra, sin terminaciones.</span></button>
     </div>
-    <p class="galeria-pie">Toca una foto para verla grande. Siete de estas son fotogramas de los videos que mandaron, por eso se ven más blandas.</p>
+    <p class="galeria-pie">Toca cualquier foto para verla grande. Siete son fotogramas de los videos que mandaron, por eso se ven más blandas.</p>
 
     <ul class="incluye">
       <li><span class="marca si">✓</span><span>Calefacción</span></li>
@@ -276,22 +288,22 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
       </div>
     </div>
 
-    <p class="galeria-tit"><span class="gt-op">Fotos de la Opción 2</span> · <span class="gt-n">14 fotos</span> · desliza para ver todas</p>
+    <p class="galeria-tit"><span class="gt-op">Fotos de la Opción 2</span> · <span class="gt-n">14 fotos</span></p>
     <div class="galeria">
-      <button class="foto" type="button"><img src="assets/opcion2-01.jpg" width="1200" height="675" alt="Vista aérea del lago con casas en la orilla" loading="lazy" decoding="async"><span class="cap">Vista aérea del sector: el lago y las construcciones a la orilla del agua, con el camino de acceso.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-02.jpg" width="1200" height="900" alt="Living comedor con mesa, sofás y ventanales" loading="lazy" decoding="async"><span class="cap">El living-comedor: mesa para seis, sofás y ventanales a ambos lados.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-03.jpg" width="1200" height="900" alt="Living con estufa a leña y puerta corredera" loading="lazy" decoding="async"><span class="cap">El otro extremo del living: estufa a leña, sofás y salida al exterior.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-04.jpg" width="1200" height="900" alt="Living con televisión, aparador y comedor" loading="lazy" decoding="async"><span class="cap">El living hacia el comedor, con la televisión y el aparador.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-05.jpg" width="1200" height="900" alt="Sala vista desde la cocina, con comedor y sofás" loading="lazy" decoding="async"><span class="cap">La misma sala desde la cocina: comedor, sofás y un sillón antiguo.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-06.jpg" width="1200" height="900" alt="Ambiente abierto con cocina, comedor y living" loading="lazy" decoding="async"><span class="cap">El ambiente completo: cocina a la derecha, comedor y living al fondo.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-07.jpg" width="1200" height="900" alt="Cocina con isla central y cocina a leña" loading="lazy" decoding="async"><span class="cap">La cocina: isla al centro, cocina a leña de fierro y mesón con lavaplatos.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-08.jpg" width="900" height="1200" alt="Cocina con campana y comedor junto a la ventana" loading="lazy" decoding="async"><span class="cap">La cocina desde el otro lado, con la campana y el comedor junto a la ventana.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-09.jpg" width="1200" height="900" alt="Dormitorio con tres camas y ventana" loading="lazy" decoding="async"><span class="cap">Un dormitorio con tres camas: dos de dos plazas y una de una plaza.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-10.jpg" width="1200" height="900" alt="Dormitorio con tres camas y cortina roja" loading="lazy" decoding="async"><span class="cap">Otro dormitorio de tres camas, con cortina roja y ventanal.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-11.jpg" width="1200" height="675" alt="Dormitorio con cama de dos plazas y sofá cama" loading="lazy" decoding="async"><span class="cap">Dormitorio con cama de dos plazas y un sofá cama, con ventana a la nieve.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-12.jpg" width="675" height="1200" alt="Dormitorio con dos camas y televisión" loading="lazy" decoding="async"><span class="cap">Dormitorio con dos camas y televisión en la pared.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-13.jpg" width="900" height="1200" alt="Baño con WC, lavamanos, ducha y lavadora" loading="lazy" decoding="async"><span class="cap">El baño: WC, lavamanos, ducha con cortina y lavadora.</span></button>
-      <button class="foto" type="button"><img src="assets/opcion2-14.jpg" width="900" height="1200" alt="Baño visto desde la puerta, con espejo y lavadora" loading="lazy" decoding="async"><span class="cap">El baño desde la puerta: espejo, lavadora y la ducha a la derecha.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-01.jpg"><img src="assets/thumbs/opcion2-01.jpg" width="640" height="640" alt="Vista aérea del lago con casas en la orilla" loading="lazy" decoding="async"><span class="cap">Vista aérea del sector: el lago y las construcciones a la orilla del agua, con el camino de acceso.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-02.jpg"><img src="assets/thumbs/opcion2-02.jpg" width="640" height="640" alt="Living comedor con mesa, sofás y ventanales" loading="lazy" decoding="async"><span class="cap">El living-comedor: mesa para seis, sofás y ventanales a ambos lados.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-03.jpg"><img src="assets/thumbs/opcion2-03.jpg" width="640" height="640" alt="Living con estufa a leña y puerta corredera" loading="lazy" decoding="async"><span class="cap">El otro extremo del living: estufa a leña, sofás y salida al exterior.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-04.jpg"><img src="assets/thumbs/opcion2-04.jpg" width="640" height="640" alt="Living con televisión, aparador y comedor" loading="lazy" decoding="async"><span class="cap">El living hacia el comedor, con la televisión y el aparador.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-05.jpg"><img src="assets/thumbs/opcion2-05.jpg" width="640" height="640" alt="Sala vista desde la cocina, con comedor y sofás" loading="lazy" decoding="async"><span class="cap">La misma sala desde la cocina: comedor, sofás y un sillón antiguo.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-06.jpg"><img src="assets/thumbs/opcion2-06.jpg" width="640" height="640" alt="Ambiente abierto con cocina, comedor y living" loading="lazy" decoding="async"><span class="cap">El ambiente completo: cocina a la derecha, comedor y living al fondo.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-07.jpg"><img src="assets/thumbs/opcion2-07.jpg" width="640" height="640" alt="Cocina con isla central y cocina a leña" loading="lazy" decoding="async"><span class="cap">La cocina: isla al centro, cocina a leña de fierro y mesón con lavaplatos.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-08.jpg"><img src="assets/thumbs/opcion2-08.jpg" width="640" height="640" alt="Cocina con campana y comedor junto a la ventana" loading="lazy" decoding="async"><span class="cap">La cocina desde el otro lado, con la campana y el comedor junto a la ventana.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-09.jpg"><img src="assets/thumbs/opcion2-09.jpg" width="640" height="640" alt="Dormitorio con tres camas y ventana" loading="lazy" decoding="async"><span class="cap">Un dormitorio con tres camas: dos de dos plazas y una de una plaza.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-10.jpg"><img src="assets/thumbs/opcion2-10.jpg" width="640" height="640" alt="Dormitorio con tres camas y cortina roja" loading="lazy" decoding="async"><span class="cap">Otro dormitorio de tres camas, con cortina roja y ventanal.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-11.jpg"><img src="assets/thumbs/opcion2-11.jpg" width="640" height="640" alt="Dormitorio con cama de dos plazas y sofá cama" loading="lazy" decoding="async"><span class="cap">Dormitorio con cama de dos plazas y un sofá cama, con ventana a la nieve.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-12.jpg"><img src="assets/thumbs/opcion2-12.jpg" width="640" height="640" alt="Dormitorio con dos camas y televisión" loading="lazy" decoding="async"><span class="cap">Dormitorio con dos camas y televisión en la pared.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-13.jpg"><img src="assets/thumbs/opcion2-13.jpg" width="640" height="640" alt="Baño con WC, lavamanos, ducha y lavadora" loading="lazy" decoding="async"><span class="cap">El baño: WC, lavamanos, ducha con cortina y lavadora.</span></button>
+      <button class="foto" type="button" data-full="assets/full/opcion2-14.jpg"><img src="assets/thumbs/opcion2-14.jpg" width="640" height="640" alt="Baño visto desde la puerta, con espejo y lavadora" loading="lazy" decoding="async"><span class="cap">El baño desde la puerta: espejo, lavadora y la ducha a la derecha.</span></button>
     </div>
     <p class="galeria-pie">Toca una foto para verla grande.</p>
 
@@ -369,7 +381,10 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
 </div>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <p class="lb-contador" id="lbNum"></p>
   <button class="lb-cerrar" id="lbCerrar" type="button" aria-label="Cerrar">✕</button>
+  <button class="lb-nav" id="lbPrev" type="button" aria-label="Foto anterior">‹</button>
+  <button class="lb-nav" id="lbNext" type="button" aria-label="Foto siguiente">›</button>
   <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
 </div>
 
@@ -385,22 +400,55 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
     revs.forEach(function(e){ io.observe(e); });
   }
 
+  // ---------- lightbox con navegacion ----------
   var lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'),
-      lbCap=document.getElementById('lbCap'), lbCerrar=document.getElementById('lbCerrar'), ultimo=null;
+      lbCap=document.getElementById('lbCap'), lbNum=document.getElementById('lbNum'),
+      lbCerrar=document.getElementById('lbCerrar'),
+      lbPrev=document.getElementById('lbPrev'), lbNext=document.getElementById('lbNext');
+  var grupo=[], idx=0, ultimo=null;
+
+  function pintar(){
+    var b=grupo[idx];
+    lbImg.src=b.dataset.full;
+    lbImg.alt=b.querySelector('img').alt;
+    lbCap.textContent=b.querySelector('.cap').textContent;
+    lbNum.textContent=(idx+1)+' / '+grupo.length;
+    var hay=grupo.length>1;
+    lbPrev.style.display=hay?'':'none';
+    lbNext.style.display=hay?'':'none';
+  }
   function abrir(btn){
-    var img=btn.querySelector('img'), cap=btn.querySelector('.cap');
-    lbImg.src=img.src; lbImg.alt=img.alt; lbCap.textContent=cap?cap.textContent:'';
-    lb.classList.add('on'); document.body.style.overflow='hidden'; ultimo=btn; lbCerrar.focus();
+    grupo=Array.prototype.slice.call(btn.closest('.galeria').querySelectorAll('.foto'));
+    idx=grupo.indexOf(btn); ultimo=btn;
+    pintar();
+    lb.classList.add('on'); document.body.style.overflow='hidden'; lbCerrar.focus();
   }
   function cerrar(){
     lb.classList.remove('on'); document.body.style.overflow=''; lbImg.src='';
     if(ultimo){ ultimo.focus(); ultimo=null; }
   }
-  document.querySelectorAll('.foto').forEach(function(b){ b.addEventListener('click', function(){ abrir(b); }); });
+  function mover(d){ if(!grupo.length) return; idx=(idx+d+grupo.length)%grupo.length; pintar(); }
+
+  document.querySelectorAll('.foto').forEach(function(b){
+    b.addEventListener('click', function(){ abrir(b); });
+  });
+  lbPrev.addEventListener('click', function(e){ e.stopPropagation(); mover(-1); });
+  lbNext.addEventListener('click', function(e){ e.stopPropagation(); mover(1); });
   lb.addEventListener('click', function(e){ if(e.target===lb || e.target===lbCerrar) cerrar(); });
   document.addEventListener('keydown', function(e){
-    if(e.key==='Escape' && lb.classList.contains('on')) cerrar();
-    if(e.key==='Tab' && lb.classList.contains('on')){ e.preventDefault(); lbCerrar.focus(); }
+    if(!lb.classList.contains('on')) return;
+    if(e.key==='Escape') cerrar();
+    else if(e.key==='ArrowLeft') mover(-1);
+    else if(e.key==='ArrowRight') mover(1);
+    else if(e.key==='Tab'){ e.preventDefault(); lbCerrar.focus(); }
   });
+  // swipe en tactil
+  var x0=null;
+  lb.addEventListener('touchstart', function(e){ x0=e.changedTouches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0; x0=null;
+    if(Math.abs(dx)>45) mover(dx<0?1:-1);
+  }, {passive:true});
 })();
 </script>
