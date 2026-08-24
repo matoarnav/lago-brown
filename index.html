@@ -12,6 +12,8 @@
   --papel:#FFFFFF; --tinta:#241C16; --tinta-suave:#6B5B4C;
   --cuero:#8A5628; --bosque:#3C5140; --linea:#D5CCBD; --linea-fina:#E9E3D8;
   --sobre-cuero:#FFFFFF; --sombra:rgba(36,28,22,.14); --tenue:#FBF9F5;
+  --grid:640px;   /* movil: una columna angosta */
+  --lectura:64ch; /* ancho maximo de un parrafo, para que no queden lineas kilometricas */
 }
 *{box-sizing:border-box}
 html{background:var(--papel)}
@@ -20,8 +22,7 @@ body{
   font:400 1.0625rem/1.65 Archivo, "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
 }
-.wrap{max-width:640px; margin:0 auto; padding:0 22px 56px}
-.hero-full{max-width:none; margin:0; padding:0}
+.wrap{max-width:var(--grid); margin:0 auto; padding:0 22px 56px}
 
 h1,h2,h3{font-family:Fraunces, Georgia, "Times New Roman", serif; font-weight:600; text-wrap:balance; margin:0}
 .eyebrow{
@@ -41,7 +42,7 @@ hr.regla{border:0; border-top:1px solid var(--linea-fina); margin:54px 0}
   content:""; position:absolute; inset:0; z-index:-1;
   background:linear-gradient(180deg, rgba(16,12,9,.62) 0%, rgba(16,12,9,.38) 38%, rgba(16,12,9,.86) 100%);
 }
-.hero-inner{max-width:640px; margin:0 auto; width:100%; color:#FFF}
+.hero-inner{max-width:var(--grid); margin:0 auto; width:100%; color:#FFF}
 .hero .eyebrow{color:#E6C9A8}
 .hero h1{
   font-size:clamp(3rem,16vw,4.6rem); line-height:.9; letter-spacing:-.03em; font-weight:700;
@@ -68,9 +69,10 @@ hr.regla{border:0; border-top:1px solid var(--linea-fina); margin:54px 0}
 }
 
 /* ---------- cifras del viaje ---------- */
+.cifras-cont{background:var(--linea-fina); border-bottom:1px solid var(--linea-fina)}
 .cifras{
-  display:grid; grid-template-columns:repeat(2,1fr); gap:1px; margin:0;
-  background:var(--linea-fina); border-bottom:1px solid var(--linea-fina);
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1px; margin:0 auto;
+  max-width:var(--grid); background:var(--linea-fina);
 }
 .cifras div{background:var(--papel); padding:22px 16px}
 .cifras .c-num{font-family:Fraunces,Georgia,serif; font-size:2rem; font-weight:700; line-height:1; letter-spacing:-.03em; color:var(--cuero); font-variant-numeric:tabular-nums}
@@ -207,7 +209,50 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
   .rev{opacity:1; transform:none; transition:none}
   *{scroll-behavior:auto !important}
 }
-@media (min-width:560px){ .foto{flex-basis:62%} }
+/* ================= anchos: 1005px intermedio, 1260px desktop ================= */
+@media (min-width:900px){
+  :root{--grid:1005px}
+  .wrap{padding-left:40px; padding-right:40px}
+  .hero{padding-left:40px; padding-right:40px}
+  .cifras{grid-template-columns:repeat(4,1fr)}
+  .cifras div{padding:30px 22px}
+  .cifras .c-num{font-size:2.5rem}
+
+  /* el texto de lectura no se estira aunque el grid sea ancho */
+  .intro, .mision p, .timeline p, .noches-pie, .galeria-pie, .detalle-precio, .tip p{max-width:var(--lectura)}
+
+  /* el plan: titulo a un lado, dias al otro */
+  .plan-grid{display:grid; grid-template-columns:300px 1fr; gap:0 60px; align-items:start}
+  .plan-cab{position:sticky; top:40px}
+  .timeline{margin-top:8px}
+
+  /* las dos opciones, lado a lado para compararlas de una */
+  .opciones-grid{display:grid; grid-template-columns:1fr 1fr; gap:0 60px; align-items:start}
+  .opcion{margin-top:32px}
+  .sep-opciones{display:none}
+  .galeria{grid-template-columns:repeat(4,1fr)}
+
+  .noches div{padding:20px 10px 22px}
+  .noches .n-lugar{font-size:1.15rem}
+  .noches .abierta .n-lugar{font-size:1.8rem}
+  .cuenta div{padding:30px 26px}
+  .frase{font-size:1.5rem; max-width:34ch}
+  .cierre h2{max-width:22ch}
+  table{font-size:.95rem}
+  th,td{padding:14px 12px}
+  tbody th{font-size:.88rem}
+  .tabla-cont{margin-left:0; margin-right:0; padding-left:0; padding-right:0}
+  .hero h1{font-size:5.4rem}
+  .hero .fecha{font-size:.22em}
+}
+@media (min-width:1340px){
+  :root{--grid:1260px}
+  .plan-grid{grid-template-columns:340px 1fr; gap:0 80px}
+  .opciones-grid{gap:0 80px}
+  .galeria{grid-template-columns:repeat(5,1fr)}
+  .cifras .c-num{font-size:2.9rem}
+  .hero h1{font-size:6.4rem}
+}
 </style>
 
 <header class="hero">
@@ -221,12 +266,12 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
   </div>
 </header>
 
-<div class="cifras">
+<div class="cifras-cont"><div class="cifras">
   <div><p class="c-num">5</p><p class="c-txt">días de viaje</p></div>
   <div><p class="c-num">4</p><p class="c-txt">noches</p></div>
   <div><p class="c-num">2</p><p class="c-txt">días en el agua</p></div>
   <div><p class="c-num">±15 h</p><p class="c-txt">de Carretera Austral</p></div>
-</div>
+</div></div>
 
 <div class="wrap">
 
@@ -248,9 +293,12 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
 <hr class="regla">
 
 <section class="rev">
-  <p class="eyebrow">El plan</p>
-  <h2>Cinco días, de punta a punta</h2>
-  <p class="intro">Salimos de madrugada desde Santiago y para el mediodía ya vamos bajando por la Carretera Austral. Después, dos días enteros con el lago para nosotros.</p>
+ <div class="plan-grid">
+  <div class="plan-cab">
+    <p class="eyebrow">El plan</p>
+    <h2>Cinco días, de punta a punta</h2>
+    <p class="intro">Salimos de madrugada desde Santiago y para el mediodía ya vamos bajando por la Carretera Austral. Después, dos días enteros con el lago para nosotros.</p>
+  </div>
 
   <ol class="timeline">
     <li>
@@ -283,6 +331,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
       <p>Temprano a Balmaceda, unos 50 minutos, y de vuelta a Santiago a las 10:00 AM. A las once ya estamos contando el viaje.</p>
     </li>
   </ol>
+ </div>
 </section>
 
 <hr class="regla">
@@ -292,6 +341,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
   <h2>Dónde dormimos el 23 y el 24</h2>
   <p class="intro">Las mismas dos noches y el mismo lago, con dos maneras muy distintas de pasarlas. Miren las fotos y después vemos.</p>
 
+  <div class="opciones-grid">
   <article class="opcion">
     <div class="opcion-cab">
       <div class="opcion-n">1</div>
@@ -338,7 +388,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
     </div>
   </article>
 
-  <hr class="regla">
+  <hr class="regla sep-opciones">
 
   <article class="opcion">
     <div class="opcion-cab">
@@ -387,6 +437,7 @@ footer{margin-top:60px; padding-top:22px; border-top:1px solid var(--linea-fina)
       <p style="margin:0">Se paga por casa, no por persona. Entre 4 sale a $50.000 cada uno por noche; si fuéramos 8, saldría a $25.000 cada uno.</p>
     </div>
   </article>
+  </div>
 </section>
 
 <hr class="regla">
